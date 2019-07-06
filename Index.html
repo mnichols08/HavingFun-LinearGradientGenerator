@@ -56,13 +56,16 @@
     <button>Click to Generate a Random Background</button>
     <h2></h2>
     <script>
-    const updateBody = () => {
-    const random360 = () => Math.floor(Math.random()*360);
-    const randomColor = () => `hsl(${random360()},50%,50%)`;
-    document.body.style.background = `linear-gradient(${random360()}deg, ${randomColor()}, ${randomColor()})`;
+const updateBody = () => {
+    const randomNum = (num) => Math.floor(Math.random()*num);
+    const randomColor = () => `hsl(${randomNum(360)},55%,45%)`;
+    document.body.style.background = `linear-gradient(${randomNum(360)}deg, ${randomColor()}, ${randomColor()})`;
     document.querySelector('h2').innerHTML = document.body.style.background;
-    }
-document.querySelector('button').addEventListener('click', updateBody);</script>
+}
+document.querySelector('button').addEventListener('click', updateBody);
+
+
+</script>
 <script src="https://codepen.io/mnichols08/pen/dKvYad.js"></script>
 </body>
 </html>
