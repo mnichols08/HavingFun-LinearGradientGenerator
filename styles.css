@@ -1,0 +1,47 @@
+:root{
+    /* font-size: 62.5%; */
+    font-family: 'Open Sans', serif;
+}
+button{
+    position:absolute;
+    color: #fff;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    padding: 2.5rem;
+    background: rgba(0,0,0,.5);
+    border-radius: 6pt;
+    box-shadow: 0 0 1rem rgba(0,0,0,.5);
+    transition: all .5s;
+    -webkit-user-select: none;  
+    -moz-user-select: none;    
+    -ms-user-select: none;      
+    user-select: none;
+}
+button:hover{
+    transform:scale(1.025) translate(-50%,-50%);
+    cursor: pointer;
+}
+button:active{
+    transform: scale(1.005) translate(-50%, -45%);
+}
+button:focus,button:active{
+    outline: none;
+}
+button.top{
+    position: absolute;
+    top: 25%;
+}
+h2{
+    position:absolute;
+    top:35%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display:inline-block;
+    background: rgba(0,0,0,0);
+    -webkit-background-clip: text;
+    color:transparent;
+    text-shadow: 0 0 1px rgba(0,0,0,.5);
+    
+
+}
