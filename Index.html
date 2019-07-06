@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta type="description" content="Simple Tool to generate some fun background gradients and returns their css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Generate a random Background Button</title>
+    <style>
+    :root{
+        font-size: 62.5%;
+        font-family: 'Open Sans', serif;
+    }
+    button{
+        position:absolute;
+        color: #fff;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        padding: 5rem;
+        background: rgba(0,0,0,.5);
+        border-radius: 6pt;
+        box-shadow: 0 0 1rem rgba(0,0,0,.5);
+        transition: all .5s;
+        -webkit-user-select: none;  
+        -moz-user-select: none;    
+        -ms-user-select: none;      
+        user-select: none;
+    }
+    button:hover{
+        transform:scale(1.025) translate(-50%,-50%);
+        cursor: pointer;
+    }
+    button:active{
+        transform: scale(1.005) translate(-50%, -45%);
+    }
+    button:focus,button:active{
+        outline: none;
+    }
+    h2{
+        position:absolute;
+        top:35%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        display:inline-block;
+        background: rgba(0,0,0,0);
+        -webkit-background-clip: text;
+        color:transparent;
+        text-shadow: 0 0 1px rgba(0,0,0,.5);
+        
+
+    }
+    </style>
+</head>
+<body>
+    <button>Click to Generate a Random Background</button>
+    <h2></h2>
+    <script>
+    const updateBody = () => {
+    const random360 = () => Math.floor(Math.random()*360);
+    const randomColor = () => `hsl(${random360()},50%,50%)`;
+    document.body.style.background = `linear-gradient(${random360()}deg, ${randomColor()}, ${randomColor()})`;
+    document.querySelector('h2').innerHTML = document.body.style.background;
+    }
+document.querySelector('button').addEventListener('click', updateBody);</script>
+<script src="https://codepen.io/mnichols08/pen/dKvYad.js"></script>
+</body>
+</html>
