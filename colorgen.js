@@ -2,36 +2,33 @@
     class Collection {
         constructor() {
             this.collection = []; // Creates an array on the parent object to store values created.
-            this.prev = [];
-            this.next = [];
+            this.prev = []; // Creates another array to store previous values on.
+            this.next = []; // Creates yet another array to store the next values on.
         };
     }
     class Color extends Collection {
-        constructor(degree, r, g, b, hue, sat, light) { // We are creating a linear gradient with Hue, Saturation, and Light
-            super()
+        constructor(degree, r, g, b, h, s, l) { // We are creating a linear gradient with Hue, Saturation, and Light
+            super() // passes the arrays created on the Collection class and the this variable into this one
             this.direction = degree; // linear-gradient() degree variable
             this.hue = r; // hue variable
             this.saturation = g; // saturation variable
             this.light = b; // light variable
-            this.hue2 = hue; // 2nd hue variable
-            this.sat = sat; // 2nd saturation variable
-            this.lite = light; // 2nd light variable
+            this.hue2 = h; // 2nd hue variable
+            this.sat = s; // 2nd saturation variable
+            this.lite = l; // 2nd light variable
             delete this.collection; // removes the array from this object - do not need it.
-            delete this.prev;
-            delete this.next;
+            delete this.prev; // removes the prev array from this object - not necessary.
+            delete this.next; // the next property on this object is also obsolete;
         }
         updateBody(style) {
             document.body.style.background = style; // sets the body background to the generated hsl()
             document.querySelector('h2').innerText = `background: ${style}`; // passes the value into the h2 element so user can see it.
         }
         togglePrevButton() {
-           prev.length > 1 ? document.getElementById('recall').classList.add('show') : document.getElementById('recall').classList.remove('show')// applies show class to the recall button (referred to as prev throughout this lecture)
+           document.getElementById('recall').classList.add('show');// applies show class to the recall button (referred to as prev throughout this lecture)
         }
         toggleNextButton() {
-            next.length > 1 ? document.getElementById('next').classList.add('show') : document.getElementById('next').classList.remove('show'); // applies show class to the next button - Needs more work to be satisfied with this.
-        }
-        rememberValues(values) {
-            Collection.prototype.oldCollection = values.map(val => val);
+            document.getElementById('next').classList.add('show'); // applies show class to the next button - Needs more work to be satisfied with this.
         }
         randomColor() {
             const randomRange = (min, max) => Math.floor(Math.random() * (max - min + 1) + min); // Generates a random interval between two numbers
@@ -58,7 +55,7 @@
                     const lastColor = prev[prev.length - 2] // sets last color to the previous object in collection
                     const thisColor = newColor(lastColor.direction, lastColor.hue, lastColor.saturation, lastColor.light, lastColor.hue2, lastColor.sat, lastColor.lite); // creates a new object based on that
                     prev.pop(thisColor) // pops the values we have seen off of the previous array
-                    next.push(thisColor); // sends them over to the next array so we can iterate through them ater
+                    next.push(thisColor); // sends them over to the next array so we can iterate through them 
                     const style = `linear-gradient(${thisColor.direction}deg, hsl(${thisColor.hue}, ${thisColor.saturation}%, ${thisColor.light}%),hsl(${thisColor.hue2},${thisColor.sat}%,${thisColor.lite}%))` // writes style str
                     thisColor.updateBody(style); // passes style string to the updateBody method on this newly created object.
                 }
@@ -79,10 +76,10 @@
         }
     }
     const initCollection = new Collection() // assigns the collection variable from parent object to store colors
-    const collection = initCollection.collection; // stores the initial collection into memory
+    const collection = initCollection.collection; // initializes collection array into memory
     let prev = initCollection.prev; // initializes the previous array into memory
     let next = initCollection.next; // initializes the next array into memory
-    const newColor = (deg, r, g, b, hue, sat, light) => new Color(deg, r, g, b, hue, sat, light); // sets up the Color Constructor
+    const newColor = (deg, r, g, b, h, s, l) => new Color(deg, r, g, b, h, s, l); // sets up the Color Constructor
 
     document.getElementById('change').addEventListener('click', new Color().randomColor); // listens for generate click on the button to update DOM on request.
     document.getElementById('recall').addEventListener('click', new Color().recallColor); // listens for recall click to update DOM on request
