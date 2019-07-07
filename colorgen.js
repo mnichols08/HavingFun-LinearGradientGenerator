@@ -25,10 +25,14 @@
             document.querySelector('h2').innerText = `background: ${style}`; // passes the value into the h2 element so user can see it.
         }
         togglePrevButton() {
-           document.getElementById('recall').classList.add('show');// applies show class to the recall button (referred to as prev throughout this lecture)
+            if(prev.length > 1) {
+            document.getElementById('recall').classList.add('show');// applies show class to the recall button (referred to as prev throughout this lecture)
+            } else {document.getElementById('recall').classList.remove('show');}
         }
         toggleNextButton() {
+            if(next.length > 1) {
             document.getElementById('next').classList.add('show'); // applies show class to the next button - Needs more work to be satisfied with this.
+            }else {document.getElementById('next').classList.remove('show')}
         }
         randomColor() {
             const randomRange = (min, max) => Math.floor(Math.random() * (max - min + 1) + min); // Generates a random interval between two numbers
@@ -44,6 +48,7 @@
             let thisColor = newColor(randomDeg, randomHue, randomSat, randomLgt, randomH_e, randomS_t, randomL_t); // finally creates the object using all the random numbers just set
             collection.push(thisColor); // pushes the values we created into storage on the parent to recall them later.
             prev.push(thisColor); // keeps history of previous backgrounds by pushing into another array
+            next.push(thisColor); // keeps history of previous backgrounds by pushing into another array
             const style = `linear-gradient(${randomDeg}deg, hsl(${randomHue}, ${randomSat}%, ${randomLgt}%),hsl(${randomH_e},${randomS_t}%,${randomL_t}%))` // writes style str
             thisColor.updateBody(style); // passes style string to the updateBody method on this newly created object.
             Color.prototype.togglePrevButton(); // tells the previous button to appear on the screen
@@ -64,6 +69,7 @@
         nextColor() {
         try{
             if (next.length > 1) {
+                next.reverse();
                 const lastColor = next[next.length - 2] // sets last color to the previous object in collection
                 const thisColor = newColor(lastColor.direction, lastColor.hue, lastColor.saturation, lastColor.light, lastColor.hue2, lastColor.sat, lastColor.lite); // creates a new object based on that
                 next.pop(thisColor) // removes this object from the next as we move towards the end.
