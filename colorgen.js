@@ -37,10 +37,10 @@
             const randomDeg = randomNum(360),
                 randomHue = randomNum(360),
                 randomSat = randomRange(...happyMedium),
-                randomLgt = randomRange(...happyMedium); // put numbers into
-            const randomH_e = randomNum(360),
+                randomLgt = randomRange(...happyMedium), 
+                randomH_e = randomNum(360),
                 randomS_t = randomRange(...happyMedium),
-                randomL_t = randomRange(...happyMedium); // memory for now
+                randomL_t = randomRange(...happyMedium); // put random numbers into memory for now so they don't change on us
             let thisColor = newColor(randomDeg, randomHue, randomSat, randomLgt, randomH_e, randomS_t, randomL_t); // finally creates the object using all the random numbers just set
             collection.push(thisColor); // pushes the values we created into storage on the parent to recall them later.
             prev.push(thisColor); // keeps history of previous backgrounds by pushing into another array
