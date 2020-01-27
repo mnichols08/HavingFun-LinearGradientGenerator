@@ -86,7 +86,6 @@
     let prev = initCollection.prev; // initializes the previous array into memory
     let next = initCollection.next; // initializes the next array into memory
     const newColor = (deg, r, g, b, h, s, l) => new Color(deg, r, g, b, h, s, l); // sets up the Color Constructor
-
     document.getElementById('change').addEventListener('click', new Color().randomColor); // listens for generate click on the button to update DOM on request.
     document.getElementById('recall').addEventListener('click', new Color().recallColor); // listens for recall click to update DOM on request
     document.getElementById('next').addEventListener('click', new Color().nextColor); // listens for recall click to update DOM on request
